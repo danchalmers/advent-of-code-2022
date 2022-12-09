@@ -2,12 +2,13 @@ def day_three():
     with open("data/input/day_three.txt", "r") as f:
         score = total_priorities(f.readlines())
         print(f"day three part one: {score}")
-        f.seek(0)
-        print(f"day three part two: {total_group_priorities(f.readlines())}")
+    with open("data/input/day_three.txt", "r") as f:
+        score = total_group_priorities(f.readlines())
+        print(f"day three part two: {score}")
 
 
 def total_priorities(input_lines: list[str]) -> int:
-    return sum([line_priority(line) for line in input_lines])
+    return sum([line_priority(line.strip()) for line in input_lines])
 
 
 def total_group_priorities(input_lines: list[str]) -> int:
@@ -26,7 +27,6 @@ def line_priority(input_line: str) -> int:
 
 def group_priority(group_lines: list[str]) -> int:
     xs = set.intersection(*map(set, group_lines))
-    print(f"group_priority {group_lines} -> {xs}")
     return sum([char_priority(x) for x in xs])
 
 
@@ -42,6 +42,6 @@ def char_priority(x):
 
 
 def batch_lines(lines):
-    lines = [l for l in lines if len(l) > 0]
+    lines = [l.strip() for l in lines if len(l) > 0]
     for i in range(0, len(lines), 3):
         yield lines[i:i+3]
