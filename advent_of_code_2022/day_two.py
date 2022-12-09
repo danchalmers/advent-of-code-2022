@@ -7,14 +7,14 @@ Play = str
 def day_two_part_one():
     with open("data/input/day_two.txt", "r") as f:
         score = score_with_part_one_strategy(f.readlines())
-        print(f"part one: {score}")
+        print(f"day two part one: {score}")
         return score
 
 
 def day_two_part_two():
     with open("data/input/day_two.txt", "r") as f:
         score = score_with_part_two_strategy(f.readlines())
-        print(f"part two: {score}")
+        print(f"day two part two: {score}")
         return score
 
 

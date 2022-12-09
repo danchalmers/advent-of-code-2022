@@ -3,9 +3,9 @@ from typing import Iterator
 
 def day_one():
     with open("data/input/day_one.txt", "r") as f:
-        print(f"part one: {most_calories_of_elves(f.readlines())}")
+        print(f"day one part one: {most_calories_of_elves(f.readlines())}")
         f.seek(0)
-        print(f"part two: {top_three_elves_calories(f.readlines())}")
+        print(f"day one part two: {top_three_elves_calories(f.readlines())}")
 
 
 def most_calories_of_elves(input_lines: Iterator[str]):
