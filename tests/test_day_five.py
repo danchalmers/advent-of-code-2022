@@ -1,4 +1,4 @@
-from advent_of_code_2022.day_five import top_of_stacks_9000, top_of_stacks_9001, parse_stacks
+from advent_of_code_2022.day_five import top_of_stacks_9000, top_of_stacks_9001, clean_parse_stacks
 
 EXAMPLE_INPUT = """    [D]    
 [N] [C]    
@@ -13,7 +13,7 @@ move 1 from 1 to 2
 
 
 def test_initial_stacks():
-    stacks, remaining = parse_stacks(EXAMPLE_INPUT.splitlines())
+    stacks, remaining = clean_parse_stacks(EXAMPLE_INPUT.splitlines())
     assert len(stacks) == 3
     assert len(stacks.get(1, [])) == 2
     assert len(stacks.get(2, [])) == 3

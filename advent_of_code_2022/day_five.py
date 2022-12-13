@@ -13,19 +13,18 @@ def day_five():
 
 
 def top_of_stacks_9000(lines: list[str]) -> str:
-    stacks, moves = parse_stacks(lines)
+    stacks, moves = clean_parse_stacks(lines)
     return handle_moves(stacks, moves, True)
 
 
 def top_of_stacks_9001(lines: list[str]) -> str:
-    stacks, moves = parse_stacks(lines)
+    stacks, moves = clean_parse_stacks(lines)
     return handle_moves(stacks, moves, False)
 
 
 def handle_moves(stacks: dict[int, Stack], moves: list[str], like_popping: bool) -> str:
     for move in moves:
         n, source, destination = parse_move(move)
-        n = -(n)
         xs = stacks[source][n:]
         if like_popping:
             xs = list(reversed(xs))
@@ -34,7 +33,7 @@ def handle_moves(stacks: dict[int, Stack], moves: list[str], like_popping: bool)
     return "".join([s[-1] for s in stacks.values()])
 
 
-def parse_stacks(lines: list[str]) -> tuple[dict[int, Stack], list[str]]:
+def clean_parse_stacks(lines: list[str]) -> tuple[dict[int, Stack], list[str]]:
     stacks, remaining = _parse_stacks(lines)
     return {
         idx: list(reversed([s for s in stack if s.isalpha()]))
@@ -47,13 +46,11 @@ def _parse_stacks(lines: list[str]) -> tuple[dict[int, Stack], list[str]]:
     for line_idx, line in enumerate(lines):
         if len(line.strip()) == 0:
             return stacks, lines[line_idx+1:]
-        for chr_idx, chr in enumerate(line):
-            if (chr_idx - 1) % 4 == 0:
-                column_id = (chr_idx // 4) + 1
-                stacks[column_id].append(chr)
+        for column_id, chr_idx in enumerate(range(1, len(line), 4), start=1):
+            stacks[column_id].append(line[chr_idx])
     return stacks, []
 
 
 def parse_move(move) -> tuple[int, int, int]:
     parts = move.split()
-    return int(parts[1]), int(parts[3]), int(parts[5])
+    return -(int(parts[1])), int(parts[3]), int(parts[5])
