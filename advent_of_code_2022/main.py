@@ -1,3 +1,4 @@
+from advent_of_code_2022.day_eight import day_eight
 from advent_of_code_2022.day_five import day_five
 from advent_of_code_2022.day_four import day_four
 from advent_of_code_2022.day_one import day_one
@@ -15,3 +16,4 @@ if __name__ == "__main__":
     day_five()
     day_six()
     day_seven()
+    day_eight()
